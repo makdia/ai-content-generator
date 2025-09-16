@@ -20,36 +20,30 @@ cd content-generator
 
 2. Install PHP dependencies:
 
-```bash
 composer install
 
 3. Install Node.js dependencies:
 
-```bash
 npm install
 
 
 4. Compile assets:
 
-```bash
 npm run dev
 
 
 5. Copy .env.example to .env and configure:
 
-```bash
 cp .env.example .env
 php artisan key:generate
 
 6. Run migrations:
 
-```bash
 php artisan migrate
 
 
 7. Serve the application:
 
-```bash
 php artisan serve  
 
 
@@ -66,5 +60,4 @@ php artisan serve
 
 Update your .env file with:
 
-```bash
 OPENAI_API_KEY=your_api_key_here
