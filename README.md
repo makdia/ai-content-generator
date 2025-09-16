@@ -17,3 +17,54 @@ A Laravel-based platform that generates content using AI. Users can input a prom
 ```bash
 git clone https://github.com/makdia/ai-content-generator.git
 cd content-generator
+
+2. Install PHP dependencies:
+
+```bash
+composer install
+
+3. Install Node.js dependencies:
+
+```bash
+npm install
+
+
+4. Compile assets:
+
+```bash
+npm run dev
+
+
+5. Copy .env.example to .env and configure:
+
+```bash
+cp .env.example .env
+php artisan key:generate
+
+6. Run migrations:
+
+```bash
+php artisan migrate
+
+
+7. Serve the application:
+
+```bash
+php artisan serve  
+
+
+## Usage
+
+1. Navigate to http://localhost:8000
+
+2. Enter your prompt in the input field.
+
+3. Click Generate to create AI-generated content.
+
+
+## Environment Variables
+
+Update your .env file with:
+
+```bash
+OPENAI_API_KEY=your_api_key_here
