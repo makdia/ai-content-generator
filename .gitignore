@@ -1,15 +1,45 @@
+# Laravel & PHP
+/vendor
 /node_modules
-/public/hot
 /public/storage
 /storage/*.key
-/vendor
+/storage/logs
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*.php
+
+# Environment files
 .env
 .env.backup
-.phpunit.result.cache
-docker-compose.override.yml
-Homestead.json
+.env.local
+.env.*.backup
+
+# Laravel specific
 Homestead.yaml
+Homestead.json
+/.vagrant
+
+# Node / npm
 npm-debug.log
 yarn-error.log
+pnpm-debug.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE & system files
 /.idea
 /.vscode
+*.swp
+*.swo
+*.swn
+*.swm
+.DS_Store
+Thumbs.db
+
+# Misc
+/public/hot
+/public/mix-manifest.json
+/public/js/*.js.map
+/public/css/*.css.map
