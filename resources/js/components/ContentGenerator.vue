@@ -6,13 +6,13 @@
       <p class="text-gray-500 mt-2">Generate high-quality content in seconds</p>
     </div>
 
-    <!-- Prompt input at top -->
-    <div class="mb-6">
+    <!-- Prompt input -->
+    <div class="mb-4">
       <label class="block font-medium text-gray-700 mb-2">Prompt</label>
       <textarea
         v-model="prompt"
         rows="4"
-        placeholder="Enter your prompt here..."
+        placeholder="e.g., Write a blog about healthy eating..."
         class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
       ></textarea>
     </div>
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Generate button -->
-    <div class="mb-6 text-center">
+    <div class="mb-4 text-center">
       <button
         @click="generateContent"
         :disabled="loading"
@@ -65,14 +65,19 @@
       </button>
     </div>
 
-    <!-- Result display -->
-    <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 min-h-[120px] relative">
-      <p class="text-gray-700 whitespace-pre-line">{{ displayText || 'Generated content will appear here...' }}</p>
-      <button v-if="promptGenerated && !error"
-              @click="copyContent"
-              class="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow hover:bg-green-600">
-        {{ copied ? '✅ Copied!' : '📋 Copy' }}
+    <!-- Copy button above content -->
+    <div v-if="result && !loading" class="flex justify-end mb-2">
+      <button
+        @click="copyContent"
+        class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow hover:bg-green-600"
+      >
+        {{ copied ? "✅ Copied!" : "📋 Copy" }}
       </button>
+    </div>
+
+    <!-- Result display -->
+    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 min-h-[120px]">
+      <p class="text-gray-700 whitespace-pre-line">{{ result || 'Generated content will appear here...' }}</p>
     </div>
   </div>
 </template>
@@ -88,8 +93,7 @@ export default {
       tone: "friendly",
       language: "en",
       words: 150,
-      displayText: "",
-      promptGenerated: false,
+      result: "",
       loading: false,
       copied: false,
       error: false,
@@ -103,10 +107,9 @@ export default {
       }
 
       this.loading = true;
-      this.displayText = "⏳ Please wait...";
-      this.promptGenerated = false;
-      this.copied = false;
+      this.result = "⏳ Please wait...";
       this.error = false;
+      this.copied = false;
 
       try {
         const response = await axios.post("/api/generate", {
@@ -116,35 +119,33 @@ export default {
           words: this.words,
         });
 
-        // Smooth typing animation
-        this.displayText = "";
-        this.promptGenerated = false;
+        // Smooth typing effect
+        this.result = "";
         const text = response.data.content;
         let i = 0;
         const interval = setInterval(() => {
-          this.displayText += text.charAt(i);
+          this.result += text.charAt(i);
           i++;
-          if (i >= text.length) {
-            clearInterval(interval);
-            this.promptGenerated = true; // enable copy button
-          }
-        }, 20); // 20ms per character
+          if (i >= text.length) clearInterval(interval);
+        }, 20);
+
       } catch (e) {
         console.error(e);
-        this.displayText = "❌ Error generating content";
+        this.result = "❌ Error generating content";
         this.error = true;
       } finally {
         this.loading = false;
       }
     },
     copyContent() {
-      navigator.clipboard.writeText(this.displayText);
+      navigator.clipboard.writeText(this.result);
       this.copied = true;
       setTimeout(() => (this.copied = false), 2000);
     },
   },
 };
 </script>
+
 
 <style scoped>
 button {

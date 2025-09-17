@@ -79,3 +79,7 @@ OPENAI_API_KEY=your_api_key_here
 Input:  "Write a product description for a smart fitness watch"
 Output: "Stay ahead of your fitness goals with our sleek Smart Fitness Watch – track your heart rate, steps, and sleep patterns with precision..."
 ```
+
+## Demo
+
+![Demo Screenshot](assets/screenshots/screenshot.png)

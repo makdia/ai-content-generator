@@ -22200,8 +22200,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       tone: "friendly",
       language: "en",
       words: 150,
-      displayText: "",
-      promptGenerated: false,
+      result: "",
       loading: false,
       copied: false,
       error: false
@@ -22223,10 +22222,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               return _context.a(2);
             case 1:
               _this.loading = true;
-              _this.displayText = "⏳ Please wait...";
-              _this.promptGenerated = false;
-              _this.copied = false;
+              _this.result = "⏳ Please wait...";
               _this.error = false;
+              _this.copied = false;
               _context.p = 2;
               _context.n = 3;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/generate", {
@@ -22237,26 +22235,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               });
             case 3:
               response = _context.v;
-              // Smooth typing animation
-              _this.displayText = "";
-              _this.promptGenerated = false;
+              // Smooth typing effect
+              _this.result = "";
               text = response.data.content;
               i = 0;
               interval = setInterval(function () {
-                _this.displayText += text.charAt(i);
+                _this.result += text.charAt(i);
                 i++;
-                if (i >= text.length) {
-                  clearInterval(interval);
-                  _this.promptGenerated = true; // enable copy button
-                }
-              }, 20); // 20ms per character
+                if (i >= text.length) clearInterval(interval);
+              }, 20);
               _context.n = 5;
               break;
             case 4:
               _context.p = 4;
               _t = _context.v;
               console.error(_t);
-              _this.displayText = "❌ Error generating content";
+              _this.result = "❌ Error generating content";
               _this.error = true;
             case 5:
               _context.p = 5;
@@ -22270,7 +22264,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     copyContent: function copyContent() {
       var _this2 = this;
-      navigator.clipboard.writeText(this.displayText);
+      navigator.clipboard.writeText(this.result);
       this.copied = true;
       setTimeout(function () {
         return _this2.copied = false;
@@ -22304,19 +22298,23 @@ var _hoisted_1 = {
   "class": "w-full max-w-3xl bg-white shadow-xl rounded-2xl p-8"
 };
 var _hoisted_2 = {
-  "class": "mb-6"
+  "class": "mb-4"
 };
 var _hoisted_3 = {
   "class": "mb-4 grid grid-cols-1 sm:grid-cols-3 gap-4"
 };
 var _hoisted_4 = {
-  "class": "mb-6 text-center"
+  "class": "mb-4 text-center"
 };
 var _hoisted_5 = ["disabled"];
 var _hoisted_6 = {
-  "class": "bg-gray-50 p-8 rounded-xl border border-gray-200 min-h-[120px] relative"
+  key: 0,
+  "class": "flex justify-end mb-2"
 };
 var _hoisted_7 = {
+  "class": "bg-gray-50 p-6 rounded-xl border border-gray-200 min-h-[120px]"
+};
+var _hoisted_8 = {
   "class": "text-gray-700 whitespace-pre-line"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -22326,14 +22324,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-3xl font-bold text-gray-800"
   }, "🚀 AI Content Generator"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-gray-500 mt-2"
-  }, "Generate high-quality content in seconds")], -1 /* CACHED */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Prompt input at top "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  }, "Generate high-quality content in seconds")], -1 /* CACHED */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Prompt input "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
     "class": "block font-medium text-gray-700 mb-2"
   }, "Prompt", -1 /* CACHED */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.prompt = $event;
     }),
     rows: "4",
-    placeholder: "Enter your prompt here...",
+    placeholder: "e.g., Write a blog about healthy eating...",
     "class": "w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.prompt]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
     "class": "block font-medium text-gray-700 mb-1"
@@ -22377,13 +22375,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     disabled: $data.loading,
     "class": "bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-indigo-700 transition disabled:opacity-50"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.loading ? "Generating..." : "Generate ✨"), 9 /* TEXT, PROPS */, _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Result display "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.displayText || 'Generated content will appear here...'), 1 /* TEXT */), $data.promptGenerated && !$data.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 0,
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.loading ? "Generating..." : "Generate ✨"), 9 /* TEXT, PROPS */, _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Copy button above content "), $data.result && !$data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[5] || (_cache[5] = function () {
       return $options.copyContent && $options.copyContent.apply($options, arguments);
     }),
-    "class": "absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow hover:bg-green-600"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.copied ? '✅ Copied!' : '📋 Copy'), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+    "class": "bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow hover:bg-green-600"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.copied ? "✅ Copied!" : "📋 Copy"), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Result display "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.result || 'Generated content will appear here...'), 1 /* TEXT */)])]);
 }
 
 /***/ }),
