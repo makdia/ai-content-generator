@@ -1,11 +1,4 @@
-require('./bootstrap'); // optional
-import Vue from 'vue';
+import { createApp } from "vue";
+import ContentGenerator from "./components/ContentGenerator.vue";
 
-import AIForm from './components/AIForm.vue';
-
-Vue.config.productionTip = false;
-
-new Vue({
-  el: '#app',
-  components: { AIForm },
-});
+createApp(ContentGenerator).mount("#app");
