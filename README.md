@@ -82,4 +82,4 @@ Output: "Stay ahead of your fitness goals with our sleek Smart Fitness Watch –
 
 ## Demo
 
-![Demo Screenshot](assets/screenshots/screenshot.png)
+![Demo Screenshot](https://github.com/makdia/ai-content-generator/blob/main/assets/screenshots/demo/screenshot.png)
