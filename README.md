@@ -80,13 +80,8 @@ Input:  "Write a product description for a smart fitness watch"
 Output: "Stay ahead of your fitness goals with our sleek Smart Fitness Watch – track your heart rate, steps, and sleep patterns with precision..."
 ```
 
-## Demo Screenshot
+## 🎥 Demo
 
 ![Demo Screenshot](https://github.com/makdia/ai-content-generator/blob/main/assets/screenshots/screenshot.png)
 
-## 🎥 Demo Video
-
-<video width="600" controls>
-  <source src="assets/demo/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+👉 [Watch Full Demo Video](https://github.com/makdia/ai-content-generator/blob/main/assets/demo/demo.mp4)
