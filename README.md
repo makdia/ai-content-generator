@@ -82,4 +82,9 @@ Output: "Stay ahead of your fitness goals with our sleek Smart Fitness Watch –
 
 ## Demo
 
-![Demo Screenshot](https://github.com/makdia/ai-content-generator/blob/main/assets/screenshots/demo/screenshot.png)
+![Demo Screenshot](https://github.com/makdia/ai-content-generator/blob/main/assets/screenshots/screenshot.png)
+
+<video width="600" controls>
+  <source src="assets/demo/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
